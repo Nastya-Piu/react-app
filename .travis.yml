@@ -13,3 +13,4 @@ deploy:
   app: "piureactapp"
   api_key:
     secure: "9543766e-cb65-464a-85a9-cc9a54ae61b8"
+  skip_cleanup: true
