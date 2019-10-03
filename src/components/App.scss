@@ -1,0 +1,19 @@
+.blog-header {
+  min-height: 250px;
+  background: #23293a;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.ui.header {
+  color: white;
+  .icon {
+    font-size: 2em !important;
+  }
+}
+
+.blog-description {
+  padding: 10px;
+}
