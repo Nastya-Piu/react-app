@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions';
+import { fetchPostsAndUsers } from '../actions';
+import UserHeader from './UserHeader';
+import './PostsList.scss';
 
 class PostsList extends Component {
+
   componentDidMount() {
-    this.props.fetchPosts();
+    this.props.fetchPostsAndUsers();
   };
 
   renderPosts() {
@@ -12,14 +15,15 @@ class PostsList extends Component {
       const picture = Math.floor(Math.random() * 100);
       return (
         <div className="item" key={post.id}>
-          <div className="ui small image">
+          {/* <div className="ui small image">
             <img src={`https://picsum.photos/id/${picture}/200/200`} />
-          </div>
+          </div> */}
           <div className="content">
-            <h4 className="header">{post.title}</h4>
+            <h2 className="header">{post.title}</h2>
             <div className="description">
             <p>{post.body}</p>
             </div>
+            <UserHeader userId={post.userId}/>
           </div>
         </div>
       )
@@ -41,5 +45,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  fetchPosts: fetchPosts
+  fetchPostsAndUsers
 })(PostsList);
