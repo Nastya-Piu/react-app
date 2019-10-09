@@ -5,7 +5,6 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   await dispatch(fetchPosts());
   const users = _.uniq(_.map(getState().posts, 'userId'));
   users.forEach(user => dispatch(fetchUser(user)));
-  console.log(users);
 }
 
 export const fetchPosts = () => {
@@ -24,3 +23,14 @@ export const fetchUser = (id) => {
     dispatch({ type: 'FETCH_USER', payload: response.data });
   };
 };
+
+export const fetchPost = id => {
+  return async dispatch  => {
+    const response = await blogposts.get('/posts/' + id);
+
+    dispatch({
+      type: 'FETCH_POST',
+      payload: response.data
+    })
+  }
+}

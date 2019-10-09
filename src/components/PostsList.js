@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPostsAndUsers } from '../actions';
 import UserHeader from './UserHeader';
 import './PostsList.scss';
+import { Link } from 'react-router-dom';
 
 class PostsList extends Component {
 
@@ -12,14 +13,14 @@ class PostsList extends Component {
 
   renderPosts() {
     return this.props.posts.map(post => {
-      const picture = Math.floor(Math.random() * 100);
       return (
         <div className="item" key={post.id}>
-          {/* <div className="ui small image">
-            <img src={`https://picsum.photos/id/${picture}/200/200`} />
-          </div> */}
           <div className="content">
-            <h2 className="header">{post.title}</h2>
+            <h2 className="header">
+              <Link to={`/${post.id}`}>
+                {post.title}
+              </Link>
+            </h2>
             <div className="description">
             <p>{post.body}</p>
             </div>
@@ -32,10 +33,10 @@ class PostsList extends Component {
 
   render() {
     return (
-      <div className="ui items">
-        <br />
-        {this.renderPosts()}
-      </div>
+        <div className="ui items">
+          <br />
+          {this.renderPosts()}
+        </div>
     );
   }
 };
