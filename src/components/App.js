@@ -1,8 +1,9 @@
 import React from 'react';
 import PostsList from './PostsList';
 import './App.scss';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import PostDetail from './PostDetail';
+import PostCreate from './PostCreate';
 
 
 class App extends React.Component {
@@ -34,7 +35,7 @@ class App extends React.Component {
             <div className="ui container">
               <h1 className="ui center aligned icon header">
                 <i className="icon paw"></i>
-                Piu Blog
+                Piu World
               </h1>
               <div className="blog-description ui center aligned">
                 Welcome to the blog of Nastya Piu. You will read a lot of interesting things about my life and my intentions.
@@ -49,6 +50,12 @@ class App extends React.Component {
             </div>
 
             <div className="three wide column about">
+              <div>
+                <Link to="/create" className="ui basic button">
+                  <i className="ui icon pencil alternate"></i>
+                  Add a post
+                </Link>
+              </div>
               <h4>About me</h4>
               <hr /><br />
               <img className="ui circular image centered" src="/img/piu.jpg"></img>
@@ -69,8 +76,11 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Route path="/" exact component={this.mainPage} />
-        <Route path="/:postId" component={PostDetail} />
+        <Switch>
+          <Route path="/" exact component={this.mainPage} />
+          <Route path="/create" exact component={PostCreate} />
+          <Route path="/:postId" exact component={PostDetail} />
+        </Switch>
       </Router>
     );
   }

@@ -22,9 +22,7 @@ class PostDetail extends React.Component {
             </div><br /><br />
             <img src={`https://picsum.photos/id/${this.props.post.id}/200/200`} />
             <h1>{this.props.post.title}</h1>
-            <p>{this.props.post.body}</p>
-            <p>{this.props.post.body}</p>
-            <p>{this.props.post.body}</p>
+            <p>{this.props.post.text}</p>
             <div className="ui clearing">
               <a className="ui right floated item twitter-share-button" href={`https://twitter.com/intent/tweet?text=${this.props.post.title}`}>
                 <i className="icon twitter"></i>
@@ -37,7 +35,7 @@ class PostDetail extends React.Component {
     } else {
       return (
         <div className="ui container centered">
-          No post
+          Loading...
         </div>
       );
     }

@@ -25,12 +25,24 @@ export const fetchUser = (id) => {
 };
 
 export const fetchPost = id => {
-  return async dispatch  => {
+  return async dispatch => {
     const response = await blogposts.get('/posts/' + id);
 
     dispatch({
       type: 'FETCH_POST',
       payload: response.data
-    })
+    });
+  }
+}
+
+export const createPost = (post, history) => {
+  return async dispatch => {
+    const response = await blogposts.post('/posts', post);
+
+    dispatch({
+      type: 'CREATE_POST',
+      payload: response.data
+    });
+    history.push("/");
   }
 }
