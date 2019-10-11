@@ -11,20 +11,21 @@ class PostDetail extends React.Component {
   }
 
   render() {
-    if(this.props.post) {
+    const { post } = this.props;
+    if(post) {
       return (
         <div>
           <div className="ui text container">
             <div className="ui breadcrumb">
               <Link to="/" className="section">Home</Link>
               <div className="divider"> / </div>
-              <div className="active section">{this.props.post.title}</div>
+              <div className="active section">{post.title}</div>
             </div><br /><br />
-            <img src={`https://picsum.photos/id/${this.props.post.id}/200/200`} />
-            <h1>{this.props.post.title}</h1>
-            <p>{this.props.post.text}</p>
+            <img src={`https://picsum.photos/id/${post.id}/200/200`} />
+            <h1>{post.title}</h1>
+            <p dangerouslySetInnerHTML={ { __html: post.text } } />
             <div className="ui clearing">
-              <a className="ui right floated item twitter-share-button" href={`https://twitter.com/intent/tweet?text=${this.props.post.title}`}>
+              <a className="ui right floated item twitter-share-button" href={`https://twitter.com/intent/tweet?text=${post.title}`}>
                 <i className="icon twitter"></i>
                 Share
               </a>
@@ -35,7 +36,7 @@ class PostDetail extends React.Component {
     } else {
       return (
         <div className="ui container centered">
-          Loading...
+          <div className="ui active centered inline loader"></div>
         </div>
       );
     }

@@ -2,6 +2,9 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Editor, EditorState } from 'draft-js';
 
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 class PostForm extends React.Component {
 
   constructor(props) {
@@ -22,9 +25,23 @@ class PostForm extends React.Component {
     )
   };
 
-  renderEditor() {
+  renderEditor({input}) {
     return (
-      <Editor editorState={this.state.editorState} onChange={this.onChange} />
+      <CKEditor
+        data={input.value}
+        editor={ ClassicEditor }
+        config={{
+          ckfinder: {
+            uploadUrl: 'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
+          },
+          toolbar: ['heading', '|', 'bold', 'italic', 'blockQuote', 'link', 'numberedList', 'bulletedList', 'insertTable',
+            'tableColumn', 'tableRow', 'mergeTableCells', 'mediaEmbed', '|', 'undo', 'redo']
+        }}
+        onChange={(event, editor) => {
+            return input.onChange(editor.getData())
+          }
+        }
+      />
     )
   }
 
@@ -35,12 +52,14 @@ class PostForm extends React.Component {
 
   render() {
     return (
+      <>
       <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
         <Field name="title" component={this.renderInput} label="Enter title"/>
         <Field name="description" component={this.renderInput} label="Enter small description"/>
-        <Field name="text" component={this.renderInput} label="Enter text"/>
+        <Field name="text" component={this.renderEditor} label="Enter text"/><br/>
         <button className="ui button primary">Create</button>
       </form>
+      </>
     );
   }
 }
