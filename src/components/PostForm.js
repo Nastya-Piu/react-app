@@ -31,10 +31,10 @@ class PostForm extends React.Component {
         data={input.value}
         editor={ ClassicEditor }
         config={{
-          ckfinder: {
-            uploadUrl: 'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
+          simpleUpload: {
+            uploadUrl: 'https://piuserver.herokuapp.com/image-upload'
           },
-          toolbar: ['heading', '|', 'bold', 'italic', 'blockQuote', 'link', 'numberedList', 'bulletedList', 'insertTable',
+          toolbar: ['heading', '|', 'bold', 'italic', 'blockQuote', 'link', 'numberedList', 'bulletedList', 'imageUpload', 'insertTable',
             'tableColumn', 'tableRow', 'mergeTableCells', 'mediaEmbed', '|', 'undo', 'redo']
         }}
         onChange={(event, editor) => {

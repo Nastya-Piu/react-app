@@ -21,9 +21,10 @@ class PostDetail extends React.Component {
               <div className="divider"> / </div>
               <div className="active section">{post.title}</div>
             </div><br /><br />
-            <img src={`https://picsum.photos/id/${post.id}/200/200`} />
-            <h1>{post.title}</h1>
-            <p dangerouslySetInnerHTML={ { __html: post.text } } />
+            <div className="ck-content">
+              <h1>{post.title}</h1>
+              <p dangerouslySetInnerHTML={ { __html: post.text } } />
+            </div>
             <div className="ui clearing">
               <a className="ui right floated item twitter-share-button" href={`https://twitter.com/intent/tweet?text=${post.title}`}>
                 <i className="icon twitter"></i>
