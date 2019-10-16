@@ -31,10 +31,12 @@ class PostsList extends Component {
 
   render() {
     return (
+      <>
+        <h2>Posts</h2>
         <div className="ui items">
-          <br />
           {this.renderPosts()}
         </div>
+      </>
     );
   }
 };

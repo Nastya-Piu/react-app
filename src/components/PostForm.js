@@ -1,17 +1,9 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Editor, EditorState } from 'draft-js';
-
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 class PostForm extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {editorState: EditorState.createEmpty()};
-    this.onChange = (editorState) => this.setState({editorState});
-  }
 
   renderInput({input, label, meta}) {
     return (
@@ -25,23 +17,28 @@ class PostForm extends React.Component {
     )
   };
 
-  renderEditor({input}) {
+  renderEditor({input, meta}) {
     return (
-      <CKEditor
-        data={input.value}
-        editor={ ClassicEditor }
-        config={{
-          simpleUpload: {
-            uploadUrl: 'https://piuserver.herokuapp.com/image-upload'
-          },
-          toolbar: ['heading', '|', 'bold', 'italic', 'blockQuote', 'link', 'numberedList', 'bulletedList', 'imageUpload', 'insertTable',
-            'tableColumn', 'tableRow', 'mergeTableCells', 'mediaEmbed', '|', 'undo', 'redo']
-        }}
-        onChange={(event, editor) => {
-            return input.onChange(editor.getData())
+      <div className="field">
+        <CKEditor
+          data={input.value}
+          editor={ ClassicEditor }
+          config={{
+            simpleUpload: {
+              uploadUrl: 'https://piuserver.herokuapp.com/image-upload'
+            },
+            toolbar: ['heading', '|', 'bold', 'italic', 'blockQuote', 'link', 'numberedList', 'bulletedList', 'imageUpload', 'insertTable',
+              'tableColumn', 'tableRow', 'mergeTableCells', 'mediaEmbed', '|', 'undo', 'redo']
+          }}
+          onChange={(event, editor) => {
+              return input.onChange(editor.getData())
+            }
           }
-        }
-      />
+        />
+        {meta.error && meta.touched && <div className="ui pointing red basic label">
+          {meta.error}
+        </div>}
+      </div>
     )
   }
 

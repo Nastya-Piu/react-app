@@ -4,6 +4,7 @@ import './App.scss';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import PostDetail from './PostDetail';
 import PostCreate from './PostCreate';
+import UserInfo from './UserInfo';
 
 
 class App extends React.Component {
@@ -11,24 +12,24 @@ class App extends React.Component {
     return (
       <div>
           <div className="blog-header">
-            <div className="ui text menu">
+            <div className="ui text menu main-menu">
               <div className="header item">Contacts</div>
-              <a className="active item" href="http://twitter.com/pilulkin_" target="_blank">
+              <a className="active item" href="http://twitter.com/pilulkin_" target="_blank" rel="noopener noreferrer">
                 <i className="icon twitter"></i>
               </a>
-              <a className="item" href="https://www.instagram.com/staisy_piu/" target="_blank">
+              <a className="item" href="https://www.instagram.com/staisy_piu/" target="_blank" rel="noopener noreferrer">
                 <i className="icon instagram"></i>
               </a>
-              <a className="item" href="https://www.facebook.com/nastya.piu" target="_blank">
+              <a className="item" href="https://www.facebook.com/nastya.piu" target="_blank" rel="noopener noreferrer">
                 <i className="icon facebook f"></i>
               </a>
-              <a className="item" href="https://vk.com/piulka" target="_blank">
+              <a className="item" href="https://vk.com/piulka" target="_blank" rel="noopener noreferrer">
                 <i className="icon vk"></i>
               </a>
-              <a className="item" href="https://www.linkedin.com/in/anastasiya-piulskaya-50858998/" target="_blank">
+              <a className="item" href="https://www.linkedin.com/in/anastasiya-piulskaya-50858998/" target="_blank" rel="noopener noreferrer">
                 <i className="icon linkedin"></i>
               </a>
-              <a className="item" href="https://join.skype.com/invite/e22pYywQryEv" target="_blank">
+              <a className="item" href="https://join.skype.com/invite/e22pYywQryEv" target="_blank" rel="noopener noreferrer">
                 <i className="icon skype"></i>
               </a>
             </div>
@@ -46,19 +47,23 @@ class App extends React.Component {
           <div className="ui container stackable grid">
 
             <div className="thirteen wide column">
-              <PostsList />
+                <PostsList />
             </div>
 
             <div className="three wide column about">
               <div>
+                <Link to="/userinfo">
+                  <i className="ui icon birthday"></i>
+                  Count your info
+                </Link><br/><br/>
                 <Link to="/create" className="ui basic button">
                   <i className="ui icon pencil alternate"></i>
                   Add a post
                 </Link>
-              </div>
+              </div><br/>
               <h4>About me</h4>
               <hr /><br />
-              <img className="ui circular image centered" src="/img/piu.jpg"></img>
+              <img className="ui circular image centered" src="/img/piu.jpg" alt="This is me"></img>
               <p>
                 Hello! I am Staisy. Love programming and good music.
               </p>
@@ -79,6 +84,7 @@ class App extends React.Component {
         <Switch>
           <Route path="/" exact component={this.mainPage} />
           <Route path="/create" exact component={PostCreate} />
+          <Route path="/userinfo" exact component={UserInfo} />
           <Route path="/:postId" exact component={PostDetail} />
         </Switch>
       </Router>
