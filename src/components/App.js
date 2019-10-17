@@ -35,7 +35,7 @@ class App extends React.Component {
             </div>
             <div className="ui container">
               <h1 className="ui center aligned icon header">
-                <i className="icon paw"></i>
+                <i className="ui icon paw"></i>
                 Piu World
               </h1>
               <div className="blog-description ui center aligned">
