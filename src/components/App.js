@@ -34,8 +34,9 @@ class App extends React.Component {
               </a>
             </div>
             <div className="ui container">
-              <h1 className="ui center aligned icon header">
-                <i className="ui icon paw"></i>
+              <h1 className="ui center aligned header">
+                <i className="ui icon pagelines"></i>
+                {/* phoenix framework */}
                 Piu World
               </h1>
               <div className="blog-description ui center aligned">
