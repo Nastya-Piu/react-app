@@ -11,6 +11,9 @@ class PostsList extends Component {
   };
 
   renderPosts() {
+    if(!this.props.posts) {
+      return <div class="ui active centered inline loader"></div>;
+    }
     return this.props.posts.map(post => {
       return (
         <div className="item" key={post.id}>
@@ -32,8 +35,8 @@ class PostsList extends Component {
   render() {
     return (
       <>
-        <h2>Posts</h2>
         <div className="ui items">
+          <h2>My posts</h2>
           {this.renderPosts()}
         </div>
       </>

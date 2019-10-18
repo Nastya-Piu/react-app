@@ -20,7 +20,7 @@ const easternHoroscope = [
 ];
 
 const easternNames = ['rat', 'ox', 'tiger', 'rabbit', 'dragon', 'snake', 'horse', 'goat', 'monkey', 'rooster', 'dog', 'pig'];
-const virtualNames = ['aristocrat', 'professor', 'chieftain', 'vector', 'knight', 'jester', 'king']
+const virtualNames = ['aristocrat', 'professor', 'leader', 'vector', 'knight', 'joker', 'king']
 const virtualSigns = [
   { 'capricorn': [0, 1, 2, 3, 2, 1, 0, 4, 5, 6, 3, 4]},
   { 'aquarius': [4, 3, 1, 2, 0, 2, 1, 0, 4, 3, 6, 5]},
@@ -137,9 +137,15 @@ class UserInfo extends React.Component {
 
   renderZodiac = (name) => {
     return (
-        <div className="zodiac">
-          <img src={`/img/zodiac/${name.charAt(0).toLowerCase() + name.slice(1)}1.png`} width="170" alt={name}/>
-        </div>
+      <div className="zodiac">
+        <img src={`/img/zodiac/${name.charAt(0).toLowerCase() + name.slice(1)}1.png`} width="170" alt={name}/>
+      </div>
+    );
+  }
+
+  renderVirtualSign = (sign) => {
+    return (
+      <a href={`http://www.xsp.ru/sh/virt/${sign}.php`} className="text-dark text-decoration" target="_blank"><u>{(sign.charAt(0).toUpperCase() + sign.slice(1))}</u></a>
     );
   }
 
@@ -187,7 +193,7 @@ class UserInfo extends React.Component {
                   required={true}
                   value={this.state.year}
                   onChange={(year) => {
-                    this.setState({ year: +year });
+                    this.setState({ year: +year, result: null });
                   }}
                   id={'year'}
                   name={'year'}
@@ -202,7 +208,7 @@ class UserInfo extends React.Component {
                   required={true}
                   value={this.state.month}
                   onChange={(month) => {
-                    this.setState({ month: +month });
+                    this.setState({ month: +month, result: null });
                   }}
                   id={'month'}
                   name={'month'}
@@ -218,7 +224,7 @@ class UserInfo extends React.Component {
                   required={true}
                   value={this.state.day}
                   onChange={(day) => {
-                    this.setState({ day: +day });
+                    this.setState({ day: +day, result: null });
                   }}
                   id={'day'}
                   name={'day'}
@@ -232,15 +238,19 @@ class UserInfo extends React.Component {
           </form>
         </div>
         {this.state.loading && <><br/><div className="ui active centered inline loader"></div></>}
-        {this.state.result && <div className="count-result" ref={ (ref) => { this.state.loading && ref && ref.scrollIntoView({behavior: 'smooth'})} }>
+        {this.state.result && <div className="count-result" ref={ (ref) => { ref && ref.scrollIntoView({behavior: 'smooth'})} }>
           <div>
             <div className="row">
               <div className="col-md-6"><b>Zodiac sign:</b> {this.state.result && this.renderZodiac(this.state.result.zodiac)}</div>
               <div className="col-md-6"><b>Eastern sign:</b> {this.state.result && this.renderEasternSign(this.state.result.easternSign)}</div>
             </div>
-            <div><b>Virtual sign:</b> {this.state.result && this.state.result.virtualSign}</div>
+            <div><b>Virtual sign:</b> {this.state.result && this.renderVirtualSign(this.state.result.virtualSign)}</div>
             <div><b>Destiny number:</b> {this.state.result && this.state.result.destinyNumber}</div>
             <div><b>Piphagore square:</b> <div className="piphagore-table">{ this.state.result && this.state.result.piphagore && this.renderSquare(this.state.result.piphagore)}</div></div>
+            <div className="center-block">
+              <small className="text-muted"><a href='https://pngtree.com/so/12 constellations'>12 constellations png from pngtree.com</a></small>
+              <small className="text-muted"><a href='https://pngtree.com/so/mouse'>mouse png from pngtree.com</a></small>
+            </div>
           </div>
         </div>}
 
@@ -250,9 +260,3 @@ class UserInfo extends React.Component {
 }
 
 export default UserInfo;
-
-// <a href='https://pngtree.com/so/12 constellations'>12 constellations png from pngtree.com</a>
-
-// <a href='https://pngtree.com/so/mouse'>mouse png from pngtree.com</a>
-
-//<a href="http://www.onlinewebfonts.com">oNline Web Fonts</a>

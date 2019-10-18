@@ -44,6 +44,7 @@ class PostForm extends React.Component {
 
   onSubmit = (post) => {
     post.date = new Date();
+    this.createBtn.className = this.createBtn.className + " loading";
     this.props.onSubmit(post);
   };
 
@@ -54,7 +55,7 @@ class PostForm extends React.Component {
         <Field name="title" component={this.renderInput} label="Enter title"/>
         <Field name="description" component={this.renderInput} label="Enter small description"/>
         <Field name="text" component={this.renderEditor} label="Enter text"/><br/>
-        <button className="ui button primary">Create</button>
+        <button className="ui button primary" ref={(ref) => this.createBtn = ref }>Create</button>
       </form>
       </>
     );
