@@ -12,7 +12,7 @@ class PostsList extends Component {
 
   renderPosts() {
     if(!this.props.posts) {
-      return <div class="ui active centered inline loader"></div>;
+      return <div className="ui active centered inline loader"></div>;
     }
     return this.props.posts.map(post => {
       return (

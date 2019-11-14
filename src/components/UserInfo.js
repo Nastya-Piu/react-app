@@ -71,6 +71,7 @@ class UserInfo extends React.Component {
     const virtualSign = this.getVurtualSign(zodiac, easternSign);
 
     this.setState({ result: {destinyNumber: destinyNumber, piphagore: _.groupBy(allDigits), zodiac: zodiac, easternSign: easternSign, virtualSign: virtualSign}, loading: false});
+    console.log(this.refs);
   }
 
   countDigets(number) {
