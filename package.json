@@ -1,6 +1,6 @@
 {
   "name": "my-app",
-  "version": "0.1.0",
+  "version": "1.1.1",
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "github:Nastya-Piu/ckeditor5-build-classic",
@@ -18,8 +18,7 @@
     "react-templates": "^0.6.3",
     "redux": "^4.0.4",
     "redux-form": "^8.2.6",
-    "redux-thunk": "^2.3.0",
-    "update": "^0.7.4"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
